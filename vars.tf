@@ -28,8 +28,3 @@ variable "instance_type" {
 variable "home_ips" {
   default = []
 }
-
-variable "create_nat_gw" {
-  default     = false
-  description = "create nat gateway if set to true"
-}
