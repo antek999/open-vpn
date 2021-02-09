@@ -15,12 +15,10 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # build blocks to create resources. A build block runs provisioners and
 # post-processors on an instance created by the source.
 source "amazon-ebs" "example" {
-  access_key    = "${var.aws_access_key}"
   ami_name      = "AMI-OpenVPN ${local.timestamp}"
-  instance_type = "${var.instance_type_packer}"
-  region        = "${var.region_for_packer}"
-  secret_key    = "${var.aws_secret_key}"
-  source_ami = "${var.source_packer_ami}"
+  instance_type = "t3.micro"
+  region        = "eu-west-1"
+  source_ami = "ami-0aef57767f5404a3c"
   ssh_username = "ubuntu"
 }
 
@@ -48,6 +46,11 @@ provisioner "file"{
 provisioner "file"{
   source = "before.rules"
   destination = "/tmp/before.rules"
+}
+
+provisioner "file"{
+  source = "before.rules.template"
+  destination = "/tmp/before.rules.template"
 }
 
 provisioner "file"{
@@ -81,6 +84,7 @@ provisioner "file"{
       "sudo cp /usr/share/easy-rsa/easyrsa /usr/local/bin",
       "sudo cp /tmp/ufw /etc/default",
       "sudo cp /tmp/before.rules /etc/ufw/",
+      "sudo cp /tmp/before.rules.template /etc/ufw/",
       "sudo cp /tmp/sysctl.conf /etc/",
       "sudo cp /tmp/server.conf /etc/openvpn/server/",
       "sudo cp -r /tmp/client-configs /srv",
