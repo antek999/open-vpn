@@ -15,7 +15,7 @@ variable "azs" {
 }
 
 variable "ami" {
-  default     = "ami-0de1f34eb4b27ef7b"
+  default     = ""
   description = "default ami for our instances"
 }
 
@@ -35,6 +35,6 @@ variable "region" {
 }
 
 variable "key_pair" {
-  default     = "key_pair"
+  default     = ""
   description = "our ssh key pair"
 }
