@@ -13,8 +13,8 @@ resource "aws_route_table" "public-rt" {
 
 
 resource "aws_route_table_association" "web" {
-  count          = 2
-  subnet_id      = aws_subnet.web[0].id
+  count          = 1
+  subnet_id      = aws_subnet.web[count.index].id
   route_table_id = aws_route_table.public-rt.id
 }
 

@@ -10,12 +10,12 @@ variable "vpc_subnet_blocks" {
 
 variable "azs" {
   type        = list
-  default     = ["ap-northeast-2a", "ap-northeast-2b"]
+  default     = ["eu-west-1a", "eu-west-1b"]
   description = "list of availability zones"
 }
 
 variable "ami" {
-  default     = "ami-0094965d55b3bb1ff"
+  default     = "ami-0de1f34eb4b27ef7b"
   description = "default ami for our instances"
 }
 
@@ -27,4 +27,14 @@ variable "instance_type" {
 
 variable "home_ips" {
   default = []
+}
+
+variable "region" {
+  default     = "eu-west-1"
+  description = "default region"
+}
+
+variable "key_pair" {
+  default     = "key_pair"
+  description = "our ssh key pair"
 }
