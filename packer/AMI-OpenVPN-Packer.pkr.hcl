@@ -41,7 +41,6 @@ provisioner "file"{
       "sudo cp /usr/share/easy-rsa/easyrsa /usr/local/bin",
       "sudo tar -xzvf /tmp/openvpn.tar.gz -C /tmp/",
       "sudo cp /tmp/ufw /etc/default",
-      "sudo cp /tmp/before.rules /etc/ufw/",
       "sudo cp /tmp/before.rules.template /etc/ufw/",
       "sudo cp /tmp/sysctl.conf /etc/",
       "sudo cp /tmp/server.conf /etc/openvpn/server/",
