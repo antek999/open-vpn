@@ -26,53 +26,10 @@ source "amazon-ebs" "example" {
 build {
   sources = ["source.amazon-ebs.example"]
 
-
-
 provisioner "file"{
-  source = "client-configs"
-  destination = "/tmp"
-}
-
-provisioner "file"{
-  source = "easy-rsa"
-  destination = "/tmp"
-}
-
-provisioner "file"{
-  source = "easy-rsa-CA"
-  destination = "/tmp"
-}
-
-provisioner "file"{
-  source = "before.rules"
-  destination = "/tmp/before.rules"
-}
-
-provisioner "file"{
-  source = "before.rules.template"
-  destination = "/tmp/before.rules.template"
-}
-
-provisioner "file"{
-  source = "server.conf"
-  destination = "/tmp/server.conf"
-}
-
-provisioner "file"{
-  source = "sysctl.conf"
-  destination = "/tmp/sysctl.conf"
-}
-
-provisioner "file"{
-  source = "ufw"
-  destination = "/tmp/ufw"
-}
-
-provisioner "file"{
-  source = "openssl-easyrsa.cnf"
+  source = "openvpn.tar.gz"
   destination = "/tmp/"
 }
-
 
   provisioner "shell" {
     inline = [
@@ -82,8 +39,8 @@ provisioner "file"{
       "sudo apt-get install -y openvpn easy-rsa",
 
       "sudo cp /usr/share/easy-rsa/easyrsa /usr/local/bin",
+      "sudo tar -xzvf /tmp/openvpn.tar.gz -C /tmp/",
       "sudo cp /tmp/ufw /etc/default",
-      "sudo cp /tmp/before.rules /etc/ufw/",
       "sudo cp /tmp/before.rules.template /etc/ufw/",
       "sudo cp /tmp/sysctl.conf /etc/",
       "sudo cp /tmp/server.conf /etc/openvpn/server/",
