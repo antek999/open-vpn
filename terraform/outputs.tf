@@ -1,3 +1,3 @@
-output "ip_addresses_pub" {
-  value = aws_instance.vpn.*.public_ip
+output "ip" {
+  value = module.openvpn.ip_addresses_pub
 }
