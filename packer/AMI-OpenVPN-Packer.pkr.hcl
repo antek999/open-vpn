@@ -18,18 +18,18 @@ source "amazon-ebs" "example" {
   ami_name      = "AMI-OpenVPN ${local.timestamp}"
   instance_type = "t3.micro"
   region        = "eu-west-1"
-  source_ami = "ami-0aef57767f5404a3c"
-  ssh_username = "ubuntu"
+  source_ami    = "ami-0aef57767f5404a3c"
+  ssh_username  = "ubuntu"
 }
 
 # a build block invokes sources and runs provisioning steps on them.
 build {
   sources = ["source.amazon-ebs.example"]
 
-provisioner "file"{
-  source = "openvpn.tar.gz"
-  destination = "/tmp/"
-}
+  provisioner "file" {
+    source      = "openvpn.tar.gz"
+    destination = "/tmp/"
+  }
 
   provisioner "shell" {
     inline = [
@@ -37,6 +37,7 @@ provisioner "file"{
       "sudo apt-get update",
       "sudo apt-get upgrade -y",
       "sudo apt-get install -y openvpn easy-rsa",
+      "sudo apt-get install -y awscli",
 
       "sudo cp /usr/share/easy-rsa/easyrsa /usr/local/bin",
       "sudo tar -xzvf /tmp/openvpn.tar.gz -C /tmp/",

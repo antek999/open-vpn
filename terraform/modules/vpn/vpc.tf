@@ -85,6 +85,13 @@ resource "aws_security_group" "vpn_and_ssh_SG" {
   }
 }
 
+#Null Resource
+resource "null_resource" "presigned-url" {
+  depends_on = [aws_s3_bucket.openvpn]
 
+  provisioner "local-exec" {
 
+    command = "aws s3 presign --region ${var.region} s3://my-s3-bucket-for-openvpn/client1.ovpn"
+  }
+}
 
