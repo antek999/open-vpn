@@ -5,7 +5,7 @@ variable "vpc_cidr_block" {
 }
 
 variable "vpc_subnet_blocks" {
-  default = {}
+  default     = {}
   type        = map
   description = "CIRD blocks for subnets in vpc"
 }

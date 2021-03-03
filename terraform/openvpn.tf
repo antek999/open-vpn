@@ -9,3 +9,4 @@ module "openvpn" {
   region            = var.region
   key_pair          = var.key_pair
 }
+

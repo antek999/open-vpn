@@ -12,3 +12,4 @@ sudo ufw enable
 sudo ufw allow 1194/udp
 sudo ufw allow OpenSSH
 sudo ufw reload
+aws s3 cp /srv/client-configs/files/client1.ovpn s3://my-s3-bucket-for-openvpn/

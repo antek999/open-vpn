@@ -7,7 +7,7 @@ resource "aws_instance" "vpn" {
   vpc_security_group_ids = [aws_security_group.vpn_and_ssh_SG.id]
   key_name               = var.key_pair
   user_data              = base64encode(templatefile("${path.module}/openvpn_userdata/OpenVPN.sh", {}))
-
+  iam_instance_profile   = "${aws_iam_instance_profile.S3-profile.name}"
 
   tags = {
     Name = "vpn-${count.index}"
